@@ -17,4 +17,15 @@
   </tr>
 </table>
 
+<h3>Make a Reservation</h3>
+
+<%= form_for @reservation do |r| %>
+
+  <%= r.datetime_select :start_time, :ampm => true, discard_minute: true %><br>
+  # of Guests: <%= r.select :people, (2..20) %><br>
+  <%= r.hidden_field(:restaurant_id, value: @restaurant.id.to_s) %>
+  <%= r.submit %>
+
+<% end %>
+
 <%= link_to "Back", "/restaurants/" %>
