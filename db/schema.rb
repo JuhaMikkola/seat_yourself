@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119033408) do
+ActiveRecord::Schema.define(version: 20131119193742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reservations", force: true do |t|
+    t.string   "restaurant_id"
+    t.string   "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "people"
+    t.datetime "start_time"
+  end
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
@@ -24,14 +39,20 @@ ActiveRecord::Schema.define(version: 20131119033408) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "pricerange"
+    t.integer  "capacity"
   end
 
   create_table "users", force: true do |t|
+    t.string   "username",                     null: false
     t.string   "email"
-    t.string   "password"
-    t.string   "neighborhood"
+    t.string   "crypted_password"
+    t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
   end
+
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
 
 end

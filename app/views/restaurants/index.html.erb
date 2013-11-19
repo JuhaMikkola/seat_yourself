@@ -1,4 +1,14 @@
-<h1>Restaurants</h1>
+<h1>You're using Seat_Yourself</h1>
+
+<div id="container">
+  <% if current_user %>
+    Logged in as <%= current_user.email %>
+    <%= link_to "Log out", logout_path %>
+  <% else %>
+    <%= link_to "Sign up", signup_path %> or
+    <%= link_to "log in", login_path %>.
+  <% end %>
+</div>
 
 <table>
 
@@ -24,3 +34,5 @@
 </table>
 
 <br><%= link_to "New Restaurant", "/restaurants/new" %>
+<br><%= link_to "New User", "/users/new" %>
+<br><%= link_to "New Category", "/categories/new" %>

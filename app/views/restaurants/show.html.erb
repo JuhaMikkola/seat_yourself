@@ -1,2 +1,20 @@
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
+<h1><%= @restaurant[:name] %></h1>
+
+<table>
+  <tr>
+      <td><%= @restaurant[:address] %></td>
+  </tr>
+      <td><%= @restaurant[:neighborhood] %></td>
+  </tr>
+  <tr>
+      <td><%= @restaurant[:pricerange] %></td>
+  </tr>
+  <tr>
+      <td><%= @restaurant[:capacity] %></td>
+  </tr>
+  <tr>
+      <td><%= @restaurant[:category_id] %></td>
+  </tr>
+</table>
+
+<%= link_to "Back", "/restaurants/" %>

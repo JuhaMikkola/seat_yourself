@@ -13,6 +13,12 @@
 
   Price Range: <%= r.select :pricerange, [['$$$', '$$$'],['$$','$$'],['$', '$']] %><br>
 
+  <%= r.hidden_field(:capacity, value: 100) %>
+
+  Category:
+  <%= r.label :category %>
+  <%= r.select :category_id, Category.all.collect {|c| [c.name, c.id]} %><br>
+
   <%= r.submit "Save" %> 
 
 <% end %>
