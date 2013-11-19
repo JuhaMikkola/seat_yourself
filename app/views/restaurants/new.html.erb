@@ -1,0 +1,18 @@
+<h1>Create New Restaurant</h1>
+
+<%= form_for @restaurant do |r| %>
+
+  <%= r.label :name %><br>
+  <%= r.text_field :name %><br>
+
+  <%= r.label :address %><br>
+  <%= r.text_field :address %><br>
+
+  <%= r.label :neighborhood %><br>
+  <%= r.text_field :neighborhood %><br>
+
+  Price Range: <%= r.select :pricerange, [['$$$', '$$$'],['$$','$$'],['$', '$']] %><br>
+
+  <%= r.submit "Save" %> 
+
+<% end %>

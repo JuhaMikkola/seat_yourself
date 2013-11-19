@@ -1,0 +1,26 @@
+<h1>Restaurants</h1>
+
+<table>
+
+  <tr>
+    <th>Restaurant</th>
+    <th>Category</th>
+    <th>Address</th>
+    <th>Neighborhood</th>
+    <th>Price Range</th>
+  </tr>
+
+<% @restaurant.each do |r| %>
+  <tr>
+    <td><%= link_to "#{r.name}", "/restaurants/#{r.id}" %></td>
+    <td><%= r.category_id %></td>
+    <td><%= r.address %></td>
+    <td><%= r.neighborhood %></td>
+    <td><%= r.pricerange %></td>
+  </tr>
+
+<% end %>
+
+</table>
+
+<br><%= link_to "New Restaurant", "/restaurants/new" %>
