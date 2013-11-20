@@ -4,19 +4,31 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
   end
 
+  # def create
+  #   @reservation = Reservation.new(reservation_params)
+  #   @reservation.user = current_user
+  #   if @reservation.save 
+  #     redirect_to restaurants_url
+  #   else
+  #     render :new
+  #   end
+  # end
+
   def create
-    @reservation = Reservation.new(reservation_params)
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @reservation = @restaurant.reservations.build(reservation_params)
     @reservation.user = current_user
-    if @reservation.save 
-      redirect_to restaurants_url
+
+    if @reservation.save
+      redirect_to '/restaurants/', :notice => 'reservation made'
     else
-      render :new
+      render 'restaurants/show'
     end
   end
 
   private
   def reservation_params
-    params.require(:reservation).permit(:user_id, :start_time, :people, :restaurant_id)
+    params.require(:reservation).permit(:user_id, :start_time, :people)
   end
 
 end

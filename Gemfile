@@ -46,3 +46,5 @@ end
 gem 'debugger', group: [:development, :test]
 
 gem 'sorcery'
+
+gem 'bootstrap-sass', '~> 3.0.2.0'

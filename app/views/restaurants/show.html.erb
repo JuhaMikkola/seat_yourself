@@ -1,31 +1,32 @@
+<div class="center hero-unit">
+
+<img src="<%= @restaurant[:image] %>" alt="Restaurant Image" class="img-circle" height="140" width="140" >
+
 <h1><%= @restaurant[:name] %></h1>
 
-<table>
-  <tr>
-      <td><%= @restaurant[:address] %></td>
-  </tr>
-      <td><%= @restaurant[:neighborhood] %></td>
-  </tr>
-  <tr>
-      <td><%= @restaurant[:pricerange] %></td>
-  </tr>
-  <tr>
-      <td><%= @restaurant[:capacity] %></td>
-  </tr>
-  <tr>
-      <td><%= @restaurant[:category_id] %></td>
-  </tr>
-</table>
+</div>
 
-<h3>Make a Reservation</h3>
+<address>
+  <strong><%= @restaurant[:name] %></strong><br>
+  <%= @restaurant[:address] %><br><br>
+  Neighborhood: <%= @restaurant[:neighborhood] %><br>
+  Price Range: <%= @restaurant[:pricerange] %><br>
+  Category: <%= @restaurant.category.name %><br>
+  Peak Capacity: <%= @restaurant[:capacity] %><br>
+</address>
 
-<%= form_for @reservation do |r| %>
+<h3>Make a Reservation <span class="label label-default">New</span></h3>
 
-  <%= r.datetime_select :start_time, :ampm => true, discard_minute: true %><br>
-  # of Guests: <%= r.select :people, (2..20) %><br>
-  <%= r.hidden_field(:restaurant_id, value: @restaurant.id.to_s) %>
-  <%= r.submit %>
+<%= form_for [@restaurant, @reservation] do |f| %>
+    <%= render 'shared/form_errors', :thing => @reservation %>
+    <div class="field">
+      <%= f.label :start_time, 'When?' %>
+      <%= f.select :start_time, @restaurant.time_slots.map{|dt| [nice_datetime(dt), dt] } %>
+    </div>
+    <div class="field">
+      <%= f.label :people %>
+      <%= f.number_field :people, :value => 1, :min => 1 %>
+    </div>
+    <%= f.submit %>
 
 <% end %>
-
-<%= link_to "Back", "/restaurants/" %>

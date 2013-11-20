@@ -1,2 +1,27 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="center hero-unit">
+
+<h1><%= current_user[:username] %>'s Reservations</h1>
+
+</div>
+
+<div class="row">
+
+  <% current_user.reservations.each do |r| %>
+  
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <img class="img-responsive" src="<%= r.restaurant.image %>">
+        <div class="caption">
+          <h3><%= r.restaurant.name %></h3>
+          <p>Your reservation is for <%= r.people %> friends on <%= nice_datetime(r.start_time) %>. Don't be late!</p>
+          <p><a href="#" class="btn btn-primary" role="button">Edit</a> <a href="#" class="btn btn-default" role="button">Cancel</a></p>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
+
+
+

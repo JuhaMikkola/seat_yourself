@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SeatYourself</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <title>Seat_Yourself Beta</title>
+  <%= stylesheet_link_tag "application", media: "all",
+                                           "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 </head>
-<body>
 
-<%= yield %>
+  <body>
+    <header class="navbar navbar-inverse">
+        <div class="container">
+          <%= link_to "Seat_Yourself", "/restaurants/", id: "logo" %>
+          <nav>
+            <ul class="nav nav-pills pull-right">
+              <li><%= link_to "Home", "/restaurants/" %></li>
+              <li><%= link_to "New Restaurant", "/restaurants/new" %></li>
+              <li><%= link_to "New Category", "/categories/new" %></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+               
+    <div class="container">
+      <%= yield %>
+    </div>
+<p>
+    <div id="container">
+                  <% if current_user %>
+                    Logged in as <%= current_user.username %>
+                    | <%= link_to "Log out", logout_path %>
+                    <% else %>
+                    <%= link_to "Register", signup_path %> or
+                    <%= link_to "Log in", login_path %>.
+                  <% end %>
+                </div>
 
-</body>
+  </body>
 </html>

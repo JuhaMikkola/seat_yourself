@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destory
+  def destroy
     logout
     redirect_to root_url, :notice => "Logged out!"
   end

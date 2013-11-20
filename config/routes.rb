@@ -1,11 +1,15 @@
 SeatYourself::Application.routes.draw do
 
-  resources :reservations
+  # resources :reservations
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
   resources :categories
-  resources :restaurants
+  
+  resources :restaurants do
+    resources :reservations, only: :create
+  end
+
   resources :users
   resources :sessions
   root :to => "home#index"

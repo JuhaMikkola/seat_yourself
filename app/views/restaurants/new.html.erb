@@ -2,23 +2,41 @@
 
 <%= form_for @restaurant do |r| %>
 
-  <%= r.label :name %><br>
-  <%= r.text_field :name %><br>
+<form class="form-horizontal" role="form">
 
-  <%= r.label :address %><br>
-  <%= r.text_field :address %><br>
+  <div class="form-group">
+  <%= r.label :name %>
+  <%= r.text_field :name %>
+  </div>
 
-  <%= r.label :neighborhood %><br>
-  <%= r.text_field :neighborhood %><br>
+  <div class="form-group">
+  <%= r.label :address %>
+  <%= r.text_field :address %>
+  </div>
 
-  Price Range: <%= r.select :pricerange, [['$$$', '$$$'],['$$','$$'],['$', '$']] %><br>
+  <div class="form-group">
+  <%= r.label :neighborhood %>
+  <%= r.text_field :neighborhood %>
+  </div>
+
+  <div class="form-group">
+  <%= r.label :image_URL %>
+  <%= r.text_field :image %>
+  </div>
+
+  <div class="form-group">
+  Price Range: <%= r.select :pricerange, [['$$$', '$$$'],['$$','$$'],['$', '$']] %>
+  </div>
+
+  <div class="form-group">
+  <%= r.label :category %>
+  <%= r.select :category_id, Category.all.collect {|c| [c.name, c.id]} %>
+  </div>
 
   <%= r.hidden_field(:capacity, value: 100) %>
-
-  Category:
-  <%= r.label :category %>
-  <%= r.select :category_id, Category.all.collect {|c| [c.name, c.id]} %><br>
 
   <%= r.submit "Save" %> 
 
 <% end %>
+
+</form>
