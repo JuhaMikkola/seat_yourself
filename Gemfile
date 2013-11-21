@@ -48,3 +48,5 @@ gem 'debugger', group: [:development, :test]
 gem 'sorcery'
 
 gem 'bootstrap-sass', '~> 3.0.2.0'
+
+gem 'rails_12factor', group: :production
