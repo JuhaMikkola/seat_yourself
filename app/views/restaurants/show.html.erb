@@ -35,3 +35,31 @@
     <%= f.submit %>
 
 <% end %>
+
+<h3>Reviews</h3>
+  
+  <ul>
+  <% @restaurant.reviews.each do |r| %>
+    <li><%= r.comment %> </li>
+  <% end %>
+</ul>
+
+<h3>Review a Restaurant <span class="label label-default">New</span></h3>
+
+<%= form_for [@restaurant, @review] do |f| %>
+
+    <%= render 'shared/form_errors', :thing => @review %>
+
+    <div class="field">
+      <%= f.label :comment %>
+      <%= f.text_field :comment %>
+    </div>
+
+    <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <%= f.submit %>
+
+<% end %>
+
+

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :email
 
   has_many :reservations
+  has_many :reviews
   has_many :restaurants, through: :reservations
 
 

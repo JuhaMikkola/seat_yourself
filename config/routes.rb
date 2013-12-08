@@ -1,8 +1,5 @@
 SeatYourself::Application.routes.draw do
 
-  get "reviews/user_id:integer"
-  get "reviews/restaurant_id:integer"
-  get "reviews/comment:string"
   # resources :reservations
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
@@ -11,6 +8,7 @@ SeatYourself::Application.routes.draw do
   
   resources :restaurants do
     resources :reservations, only: :create
+    resources :reviews, :except => [:index]
   end
 
   resources :users

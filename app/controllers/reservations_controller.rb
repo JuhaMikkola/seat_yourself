@@ -4,16 +4,6 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
   end
 
-  # def create
-  #   @reservation = Reservation.new(reservation_params)
-  #   @reservation.user = current_user
-  #   if @reservation.save 
-  #     redirect_to restaurants_url
-  #   else
-  #     render :new
-  #   end
-  # end
-
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
     @reservation = @restaurant.reservations.build(reservation_params)
