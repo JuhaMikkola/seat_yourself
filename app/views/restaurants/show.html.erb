@@ -15,6 +15,10 @@
   Peak Capacity: <%= @restaurant[:capacity] %><br>
 </address>
 
+<button class="btn btn-mini">
+  <%= link_to "Edit", "/restaurants/#{params[:id]}/edit" %>
+</button>
+
 <h3>Make a Reservation <span class="label label-default">New</span></h3>
 
 <%= form_for [@restaurant, @reservation] do |f| %>
@@ -27,6 +31,7 @@
       <%= f.label :people %>
       <%= f.number_field :people, :value => 1, :min => 1 %>
     </div>
+
     <%= f.submit %>
 
 <% end %>

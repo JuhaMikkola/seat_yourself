@@ -1,0 +1,42 @@
+<h1>Edit a Restaurant</h1>
+
+<%= form_for @restaurant do |r| %>
+
+<form class="form-horizontal" role="form">
+
+  <div class="form-group">
+  <%= r.label :name %>
+  <%= r.text_field :name %>
+  </div>
+
+  <div class="form-group">
+  <%= r.label :address %>
+  <%= r.text_field :address %>
+  </div>
+
+  <div class="form-group">
+  <%= r.label :neighborhood %>
+  <%= r.text_field :neighborhood %>
+  </div>
+
+  <div class="form-group">
+  <%= r.label :image_URL %>
+  <%= r.text_field :image %>
+  </div>
+
+  <div class="form-group">
+  Price Range: <%= r.select :pricerange, [['$$$', '$$$'],['$$','$$'],['$', '$']] %>
+  </div>
+
+  <div class="form-group">
+  <%= r.label :category %>
+  <%= r.select :category_id, Category.all.collect {|c| [c.name, c.id]} %>
+  </div>
+
+  <%= r.hidden_field(:capacity, value: 100) %>
+
+  <%= r.submit "Save" %> 
+
+<% end %>
+
+</form>
